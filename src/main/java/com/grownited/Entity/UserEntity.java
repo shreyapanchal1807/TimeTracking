@@ -13,97 +13,102 @@ public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer UserId;
-	private String FirstName;
-	private String LastName;
-	private String Email;
-	private String PassWord;
-	private String Gender;
-	private String ContactNo;
-	private Integer DOB;
-	private String Address;
-	private String City;
-	private String State;
-	private String Otp;
+	private Integer userId;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String passWord;
+	private String gender;
+	private String contactNo;
+	private Integer dOB;
+	private String address;
+	private String city;
+	private String state;
+	private String otp;
+	private Integer roleId;
 	public Integer getUserId() {
-		return UserId;
+		return userId;
 	}
 	public void setUserId(Integer userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public String getPassWord() {
-		return PassWord;
+		return passWord;
 	}
 	public void setPassWord(String passWord) {
-		PassWord = passWord;
+		this.passWord = passWord;
 	}
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 	public String getContactNo() {
-		return ContactNo;
+		return contactNo;
 	}
 	public void setContactNo(String contactNo) {
-		ContactNo = contactNo;
+		this.contactNo = contactNo;
 	}
-	public Integer getDOB() {
-		return DOB;
+	public Integer getdOB() {
+		return dOB;
 	}
-	public void setDOB(Integer dOB) {
-		DOB = dOB;
+	public void setdOB(Integer dOB) {
+		this.dOB = dOB;
 	}
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 	public String getCity() {
-		return City;
+		return city;
 	}
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 	public String getState() {
-		return State;
+		return state;
 	}
 	public void setState(String state) {
-		State = state;
+		this.state = state;
 	}
 	public String getOtp() {
-		return Otp;
+		return otp;
 	}
 	public void setOtp(String otp) {
-		Otp = otp;
+		this.otp = otp;
 	}
-	
-	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 	
 	
 }
-	
-	
+
+		
 	
 	
 	

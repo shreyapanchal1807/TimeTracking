@@ -13,6 +13,7 @@ public class ProjectStatusEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ProjectStatusID;
 	private String ProjectStatus;
+	
 	public Integer getProjectStatusID() {
 		return ProjectStatusID;
 	}

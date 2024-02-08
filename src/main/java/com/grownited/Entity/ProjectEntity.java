@@ -13,42 +13,70 @@ public class ProjectEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	private Integer ProjectID;
-	private String Title;
-	private String Description;
-	private String StartDate;
-	private String EndDate;
+	private Integer projectID;
+	private String title;
+	private String description;
+	private String projectStatusID;
+	private String docURL;
+	private String estimatedHours;
+	private String totalUtilizedHours;
+	private String projectStartDate;
+	private String projectEndDate;
+	
 	public Integer getProjectID() {
-		return ProjectID;
+		return projectID;
 	}
 	public void setProjectID(Integer projectID) {
-		ProjectID = projectID;
+		this.projectID = projectID;
 	}
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	public String getStartDate() {
-		return StartDate;
+	public String getProjectStatusID() {
+		return projectStatusID;
 	}
-	public void setStartDate(String startDate) {
-		StartDate = startDate;
+	public void setProjectStatusID(String projectStatusID) {
+		this.projectStatusID = projectStatusID;
 	}
-	public String getEndDate() {
-		return EndDate;
+	public String getDocURL() {
+		return docURL;
 	}
-	public void setEndDate(String endDate) {
-		EndDate = endDate;
-	}		
+	public void setDocURL(String docURL) {
+		this.docURL = docURL;
+	}
+	public String getEstimatedHours() {
+		return estimatedHours;
+	}
+	public void setEstimatedHours(String estimatedHours) {
+		this.estimatedHours = estimatedHours;
+	}
+	public String getTotalUtilizedHours() {
+		return totalUtilizedHours;
+	}
+	public void setTotalUtilizedHours(String totalUtilizedHours) {
+		this.totalUtilizedHours = totalUtilizedHours;
+	}
+	public String getProjectStartDate() {
+		return projectStartDate;
+	}
+	public void setProjectStartDate(String projectStartDate) {
+		this.projectStartDate = projectStartDate;
+	}
+	public String getProjectEndDate() {
+		return projectEndDate;
+	}
+	public void setProjectEndDate(String projectEndDate) {
+		this.projectEndDate = projectEndDate;
+	}
 	
-	}
-	
+}
 	
