@@ -1,11 +1,15 @@
 package com.grownited.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.Entity.ProjectEntity;
+import com.grownited.Entity.UserEntity;
 import com.grownited.Repository.ProjectRepository;
 
 @Controller
@@ -20,7 +24,15 @@ public String project() {
 @PostMapping("path")
 public String saveproject(ProjectEntity projectentity) {
 	projectrepo.save(projectentity);
-	return"Home";
-}
+	return"redirect:/listproject";
+	}
+	@GetMapping("listproject")
+	public String listproject(Model model) {
+		List<ProjectEntity>poj=projectrepo.findAll();
+		model.addAttribute("p", poj);
+		return"ListProject";
+	}
 
 }
+
+

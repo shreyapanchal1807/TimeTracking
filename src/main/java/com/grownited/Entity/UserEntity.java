@@ -20,7 +20,7 @@ public class UserEntity {
 	private String passWord;
 	private String gender;
 	private String contactNo;
-	private Integer dOB;
+	private String dOB;
 	private String address;
 	private String city;
 	private String state;
@@ -68,10 +68,10 @@ public class UserEntity {
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
-	public Integer getdOB() {
+	public String getdOB() {
 		return dOB;
 	}
-	public void setdOB(Integer dOB) {
+	public void setdOB(String dOB) {
 		this.dOB = dOB;
 	}
 	public String getAddress() {
@@ -105,9 +105,7 @@ public class UserEntity {
 		this.roleId = roleId;
 	}
 	
-	
 }
-
 		
 	
 	
