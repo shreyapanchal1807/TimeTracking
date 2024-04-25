@@ -1,5 +1,6 @@
 package com.grownited.Entity;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,14 +8,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ProjectUser")
+@Table(name="projectuser")
 public class ProjectUserEntity {
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Integer  projectUserId;
-	 private Integer userId;
-	 private Integer projectId;
-	 private Integer assignStatus;
+	Integer projectUserId;
+	Integer userId;
+	Integer projectId;
+	Integer assignStatus;//1 assign 2 revoke 3 hold 
 	public Integer getProjectUserId() {
 		return projectUserId;
 	}
@@ -40,6 +43,5 @@ public class ProjectUserEntity {
 		this.assignStatus = assignStatus;
 	}
 
-	 
-
+	
 }

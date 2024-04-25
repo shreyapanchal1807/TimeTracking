@@ -7,24 +7,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "ProjectStatusEntity")
+@Table(name = "project_status")
 public class ProjectStatusEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ProjectStatusID;
-	private String ProjectStatus;
-	
-	public Integer getProjectStatusID() {
-		return ProjectStatusID;
+	private Integer projectStatusId;
+	private String status;
+
+	public Integer getProjectStatusId() {
+		return projectStatusId;
 	}
-	public void setProjectStatusID(Integer projectStatusID) {
-		ProjectStatusID = projectStatusID;
+
+	public void setProjectStatusId(Integer projectStatusId) {
+		this.projectStatusId = projectStatusId;
 	}
-	public String getProjectStatus() {
-		return ProjectStatus;
+
+	public String getStatus() {
+		return status;
 	}
-	public void setProjectStatus(String projectStatus) {
-		ProjectStatus = projectStatus;
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
+
 }

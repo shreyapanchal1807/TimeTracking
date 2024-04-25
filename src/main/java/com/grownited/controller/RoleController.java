@@ -2,6 +2,8 @@
 
 package com.grownited.controller;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,32 +11,48 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
- import com.grownited.Entity.RoleEntity;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.grownited.Entity.RoleEntity;
 import com.grownited.Repository.RoleRepository;
+
+
 
 @Controller
 public class RoleController {
+
 	@Autowired
-	RoleRepository RoleRepo;
+	RoleRepository roleRepo;
 	
 	@GetMapping("/newrole")
-	public String newrole()
-	{
-		return "NewRole";
-	}
-	@PostMapping("/saverole")
-	public String saveRole(RoleEntity role)
-	{
-		System.out.println(role.getRoleName());
-		RoleRepo.save(role);
+	public String newRole() {
 		
-		return"redirect:/listrole";
+		return "NewRole";//jsp 
 	}
-	@GetMapping("listrole")
-	public String listrole(Model model) {
-		List<RoleEntity>roles=RoleRepo.findAll();
-		model.addAttribute("r", roles);
-		return"ListRole";
+
+	@PostMapping("/saverole")
+	public String saveRole(RoleEntity  role) {
+		System.out.println(role.getRoleName());
+		//insert 
+	
+		roleRepo.save(role);//insert 
+		return "redirect:/listrole"; //this will invoke method  
+	}
+	
+
+	@GetMapping("/listrole")
+	public String listRole(Model model) {
+		List<RoleEntity> listRole =   roleRepo.findAll();//select * from roles 
+		System.out.println("ListRole :: from controller");
+		model.addAttribute("r",listRole);
+		return "ListRole";//jsp 
+	}
+	
+	
+	@GetMapping("/deleterole")
+	public String deleteRole(@RequestParam("roleId") Integer roleId) {
+		roleRepo.deleteById(roleId);
+		return "redirect:/listrole"; 
 	}
 
 }

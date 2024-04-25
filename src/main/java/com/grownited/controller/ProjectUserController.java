@@ -1,40 +1,71 @@
 package com.grownited.controller;
 
-import java.util.List;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.grownited.Entity.ProjectEntity;
 import com.grownited.Entity.ProjectUserEntity;
-import com.grownited.Repository.ProjectStatusRepository;
+import com.grownited.Repository.ProjectRepository;
 import com.grownited.Repository.ProjectUserRepository;
+import com.grownited.Repository.UserRepository;
+
 
 @Controller
 public class ProjectUserController {
+
+	
 	@Autowired
-	ProjectUserRepository projectuserRepo;
-	@GetMapping("/projectuser")
-	public String newProjectUSer()
-	{
-		return"projectuser";
+	ProjectRepository projectRepo;
+	
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	ProjectUserRepository projectUserRepo; 
+	@GetMapping("/assignproject")
+	public String assignProject(Model model) {
+
+		//send all users and project to jsp 
+		model.addAttribute("users",userRepo.findAll());
+		model.addAttribute("projects",projectRepo.findAll()); 
+		
+		return "AssignProject"; 
 	}
-	@PostMapping("/saveprojectuser")
-	public String saveprojectuser( ProjectUserEntity projectuser) {
-		projectuserRepo.save(projectuser);
-		return"redirect:/listtask";
+	
+	
+	@PostMapping("/assignproject")
+	public String assignProjectToUser(ProjectUserEntity pu) {
+		pu.setAssignStatus(1); //assign 
+		projectUserRepo.save(pu);
+		return "redirect:/assignproject";
 	}
-	@GetMapping("ListProjectUser")
-	public String listprojectuser(Model model) {
-		List<ProjectUserEntity>ProjectUser=projectuserRepo.findAll();
-		model.addAttribute("pu",ProjectUser);
-		return"ListProjectUser";
+
+	@GetMapping("/listprojectuser")
+	public String listProjectUser(@RequestParam("projectId") Integer projectId,Model model) {
+	
+		model.addAttribute("project",projectRepo.findById(projectId).get());
+		model.addAttribute("users",userRepo.getUserByProjectId(projectId));
+	
+		model.addAttribute("usersHold",userRepo.getUserByProjecthold(projectId));
+		model.addAttribute("usersRevoke",userRepo.getUserByProjectIdRevoke(projectId));
 		
 		
+		return "ListProjectUser";
+	}
+
+	@GetMapping("/projectrevoke")
+	public String projectRevoke(@RequestParam("userId") Integer userId,@RequestParam("projectId") Integer projectId,@RequestParam("status") Integer status) {
 		
+		ProjectUserEntity pe = projectUserRepo.findByProjectIdAndUserId(projectId,userId);
+		pe.setAssignStatus(status);
+		projectUserRepo.save(pe);
+		return "redirect:/listprojectuser?projectId="+projectId;
 	}
 	
 

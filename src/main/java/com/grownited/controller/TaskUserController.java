@@ -1,6 +1,5 @@
 package com.grownited.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,25 +9,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.Entity.TaskUserEntity;
 import com.grownited.Repository.TaskUserRepository;
+import com.grownited.Repository.UserRepository;
+
 
 @Controller
 public class TaskUserController {
+
 	@Autowired
-	TaskUserRepository taskuserrepo;
-	@GetMapping("newtaskuser")
-	public String newtaskuser() {
-		return"NewTaskUser";
+	TaskUserRepository taskUserRepo; 
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@GetMapping("/assigntask")
+	public String newAssignTask(Model model) {
+		
+		model.addAttribute("users",userRepository.findAll());
+		
+		return "AssignTask";
 	}
-	@PostMapping("savetaskuser")
-	public String savetaskuser(TaskUserEntity taskuserentity) { 
-		taskuserrepo.save(taskuserentity);
-		return"redirect:/listtaskuser";
+	
+	@PostMapping("/assigntask")
+	public String assignTask(TaskUserEntity taskUser) {
+		taskUserRepo.save(taskUser);
+		return "redirect:/listtaskuser";
 	}
-	@GetMapping("listtaskuser")
-	public String listtaskuser(Model model) {
-		List<TaskUserEntity>taskuser=taskuserrepo.findAll();
-		model.addAttribute("taskuser",taskuser);
-		return"ListTaskUser";
+	
+	@GetMapping("/listtaskuser")
+	public String newListTaskUser() {
+		
+		return "ListTaskUser";
 	}
 
+	
+	
+	
 }

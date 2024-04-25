@@ -1,0 +1,82 @@
+package com.grownited.controller;
+
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.grownited.Entity.ProjectEntity;
+import com.grownited.Entity.ProjectStatusEntity;
+import com.grownited.Repository.ProjectRepository;
+import com.grownited.Repository.ProjectStatusRepository;
+import com.grownited.Repository.UserRepository;
+
+@Controller
+public class AdminController {
+
+	@Autowired
+	ProjectRepository projectRepo;
+
+	@Autowired
+	ProjectStatusRepository projectStatusRepo;
+
+	@Autowired
+	UserRepository userRepo;
+
+	@GetMapping("/admindashboard")
+	public String adminDashboard(Model model) {
+
+		ProjectStatusEntity ps = projectStatusRepo.findByStatus("notstarted");
+		model.addAttribute("pipeline", projectRepo.findByProjectStatusId(ps.getProjectStatusId()).size());
+
+		ps = projectStatusRepo.findByStatus("inprogress");
+		List<ProjectEntity> inProgress = projectRepo.findByProjectStatusId(ps.getProjectStatusId());
+		model.addAttribute("onGoing", inProgress.size());
+
+		ps = projectStatusRepo.findByStatus("due");
+		List<ProjectEntity> due = projectRepo.findByProjectStatusId(ps.getProjectStatusId());
+		model.addAttribute("due", due.size());
+
+		List<ProjectEntity> projects = new ArrayList<>();
+		projects.addAll(inProgress);
+		projects.addAll(due);
+
+		String projectName = "";
+		String set1 = "";
+		String set2 = "";
+		for (ProjectEntity p : projects) {
+			projectName = projectName + "'" + p.getTitle() + "',";
+			set1 = set1 + p.getEstimatedHours() + ",";
+			set2 = set2 + p.getTotalUtilizedHours() + ",";
+		}
+
+		model.addAttribute("projectName", projectName);
+		model.addAttribute("set1", set1);
+		model.addAttribute("set2", set2);
+
+		model.addAttribute("team", userRepo.findAll().size());
+
+		return "AdminDashboard";
+	}
+
+	@GetMapping("/chart")
+	public String chart(Model model) {
+		List<ProjectEntity> projects = projectRepo.findAll();
+		String projectName  = "";
+		String estimatedHr = "";
+		for(ProjectEntity p:projects) {
+			projectName = projectName +"'"+p.getTitle()+"',";
+			estimatedHr = estimatedHr + p.getEstimatedHours() +",";
+		}
+		model.addAttribute("projectName",projectName);
+		model.addAttribute("estimatedHr",estimatedHr);
+		return "Chart";
+	}
+
+}

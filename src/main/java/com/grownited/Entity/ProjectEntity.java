@@ -7,76 +7,101 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ProjectEntity")
-
+@Table(name = "projects")
 public class ProjectEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	private Integer projectID;
+	private Integer projectId;
 	private String title;
 	private String description;
-	private String projectStatusID;
+	private Integer projectStatusId;// fk  1->inProgress,2->hold,3->completed,4->notStarted,5->due 
 	private String docURL;
-	private String estimatedHours;
-	private String totalUtilizedHours;
+	private Integer estimatedHours;
+	private Integer totalUtilizedHours;
 	private String projectStartDate;
-	private String projectEndDate;
-	
-	public Integer getProjectID() {
-		return projectID;
+	private String projectCompletionDate;
+	private String actualCompletionDate;
+
+	public Integer getProjectId() {
+		return projectId;
 	}
-	public void setProjectID(Integer projectID) {
-		this.projectID = projectID;
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getProjectStatusID() {
-		return projectStatusID;
+
+	public Integer getProjectStatusId() {
+		return projectStatusId;
 	}
-	public void setProjectStatusID(String projectStatusID) {
-		this.projectStatusID = projectStatusID;
+
+	public void setProjectStatusId(Integer projectStatusId) {
+		this.projectStatusId = projectStatusId;
 	}
+
 	public String getDocURL() {
 		return docURL;
 	}
+
 	public void setDocURL(String docURL) {
 		this.docURL = docURL;
 	}
-	public String getEstimatedHours() {
+
+	public Integer getEstimatedHours() {
 		return estimatedHours;
 	}
-	public void setEstimatedHours(String estimatedHours) {
+
+	public void setEstimatedHours(Integer estimatedHours) {
 		this.estimatedHours = estimatedHours;
 	}
-	public String getTotalUtilizedHours() {
+
+	public Integer getTotalUtilizedHours() {
 		return totalUtilizedHours;
 	}
-	public void setTotalUtilizedHours(String totalUtilizedHours) {
+
+	public void setTotalUtilizedHours(Integer totalUtilizedHours) {
 		this.totalUtilizedHours = totalUtilizedHours;
 	}
+
 	public String getProjectStartDate() {
 		return projectStartDate;
 	}
+
 	public void setProjectStartDate(String projectStartDate) {
 		this.projectStartDate = projectStartDate;
 	}
-	public String getProjectEndDate() {
-		return projectEndDate;
+
+	public String getProjectCompletionDate() {
+		return projectCompletionDate;
 	}
-	public void setProjectEndDate(String projectEndDate) {
-		this.projectEndDate = projectEndDate;
+
+	public void setProjectCompletionDate(String projectCompletionDate) {
+		this.projectCompletionDate = projectCompletionDate;
 	}
-	
+
+	public String getActualCompletionDate() {
+		return actualCompletionDate;
+	}
+
+	public void setActualCompletionDate(String actualCompletionDate) {
+		this.actualCompletionDate = actualCompletionDate;
+	}
+
 }
 	
